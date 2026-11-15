@@ -1,0 +1,10 @@
+{
+  "name": "peticionar-egm",
+  "displayName": "Peticionar EGM (7 Goldfishes Jurídicos)",
+  "version": "1.0.0",
+  "description": "Orquestra 7 Goldfishes jurídicos isolados integrados à skill consultar-leis (H:\\acervo\\leis) para busca profunda, auditoria de autos, pesquisa de jurisprudência real e stress-test de petições e pareceres.",
+  "author": {
+    "name": "Victor Araruna"
+  },
+  "license": "MIT"
+}

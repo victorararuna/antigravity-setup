@@ -1,0 +1,9 @@
+# Arquivos de estado local e credenciais do Antigravity
+config.json
+.migrated
+projects/
+node_modules/
+sidecars/
+**/auth.json
+.DS_Store
+Thumbs.db
