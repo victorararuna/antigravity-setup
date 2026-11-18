@@ -1,0 +1,82 @@
+# Your patch layer for this dsh profile, applied after every bundle layer:
+# a top-level YAML array of loader patch entries (id-targeted config
+# overrides, disables, and insert lists; `!!js` expressions allowed).
+- id: agent-default-model
+  name: "@deepseek-ai/dsh-agent-default-model"
+  config:
+    provider: deepseek-account
+    model: deepseek-flash
+    reasoningEffort: low
+- id: ui-settings-account
+  name: "@deepseek-ai/dsh-client-ui-settings-account"
+  config:
+    version: 1
+    step: done
+    purpose: both
+    process: compact
+    completion: completed
+    usage: detailed
+    developerTools: true
+- id: ui-chat
+  name: "@deepseek-ai/dsh-client-ui-chat"
+  config:
+    transcriptView: compact
+    performanceUsage: detailed
+- id: ui-settings
+  name: "@deepseek-ai/dsh-client-ui-settings"
+  config:
+    enabled: true
+- id: ui-theme
+  name: "@deepseek-ai/dsh-client-ui-theme"
+  config:
+    preference: light
+    fontSize: 17
+# Modelos gratuitos (OpenRouter, tier :free) para tarefas simples.
+# A chave vem de OPENROUTER_API_KEY no ambiente, em ./.env ou em $DSH_HOME/.env.
+- id: llm-pi-ai
+  name: "@deepseek-ai/dsh-llm-pi-ai"
+  config:
+    providers:
+      openrouter:
+        displayName: OpenRouter (free)
+        apiKeyEnv: OPENROUTER_API_KEY
+        models:
+          - id: "nvidia/nemotron-3.5-super-vl:free"
+            name: Nemotron 3.5 Super VL (free)
+            contextWindow: 1000000
+          - id: "nvidia/nemotron-3-ultra-550b-a55b:free"
+            name: Nemotron 3 Ultra 550B (free)
+            contextWindow: 1000000
+          - id: "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+            name: Nemotron 3 Nano Omni (free)
+            contextWindow: 256000
+          - id: "cohere/north-mini-code:free"
+            name: North Mini Code (free)
+            contextWindow: 256000
+- id: subagent-model-selection-settings
+  name: "@deepseek-ai/dsh-tool-subagent/model-selection-settings"
+  config:
+    enabled: true
+    allowedModels:
+      - provider: deepseek-account
+        model: deepseek-flash
+      - provider: openrouter
+        model: nvidia/nemotron-3.5-super-vl:free
+      - provider: openrouter
+        model: nvidia/nemotron-3-ultra-550b-a55b:free
+      - provider: openrouter
+        model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
+      - provider: openrouter
+        model: cohere/north-mini-code:free
+- id: llm-deepseek
+  name: "@deepseek-ai/dsh-llm-deepseek-api-key"
+  config:
+    models:
+      - id: deepseek-flash
+        name: DeepSeek-V4.1-Flash
+        contextWindow: 1048576
+        systemPromptUpdate: in-history
+        toolUpdate: addition-only
+        inputModalities:
+          - text
+          - image

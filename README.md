@@ -42,6 +42,16 @@ git clone https://github.com/victorararuna/antigravity-setup.git "$HOME/antigrav
 
 - **`nunca-cite-dispositivo-nao-lido.md`**: Regra global que proíbe citar dispositivo legal, súmula, ato normativo ou precedente não lido diretamente no acervo (`H:\acervo\leis`) ou fonte oficial verificável.
 
+### 4. DSH (DeepSeek Harness)
+
+Variante adaptada para o DeepSeek Harness, em [`dsh/`](dsh/README.md): as skills com `agents/` e `resources/` embutidos, `AGENTS.md` global, mapa de modelos por persona (`egm-models.md`) e patch de perfil com a rota gratuita do OpenRouter.
+
+```powershell
+& "$HOME\antigravity-setup\dsh\install.ps1"
+```
+
+Instala em `~/.dsh` e **não** toca em `~/.gemini/config`. Segredos (`.env`, `.credentials.yaml`) ficam fora do versionamento.
+
 ---
 
 ## Como atualizar o repositório com novas customizações

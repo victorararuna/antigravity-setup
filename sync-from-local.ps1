@@ -42,5 +42,19 @@ if (Test-Path $RulesSrc) {
     }
 }
 
-Write-Host "Sincronizacao concluida de $SourceDir para $RepoDir (auth.json removidos)." -ForegroundColor Cyan
+# DSH (DeepSeek Harness): apenas configuracao. Nunca skills (elas carregam copias de
+# agents/resources embutidos) nem credenciais (.env, .credentials.yaml).
+$DshSrc = Join-Path $HOME ".dsh"
+$DshDst = Join-Path $RepoDir "dsh"
+if (Test-Path $DshSrc) {
+    New-Item -ItemType Directory -Force -Path (Join-Path $DshDst "profile") | Out-Null
+    foreach ($f in @("AGENTS.md", "egm-models.md")) {
+        $s = Join-Path $DshSrc $f
+        if (Test-Path $s) { Copy-Item $s (Join-Path $DshDst $f) -Force }
+    }
+    $dshPatch = Join-Path $DshSrc "profiles\desktop\cordis.patch.yml"
+    if (Test-Path $dshPatch) { Copy-Item $dshPatch (Join-Path $DshDst "profile\cordis.patch.yml") -Force }
+}
+
+Write-Host "Sincronizacao concluida de $SourceDir e ~/.dsh para $RepoDir (auth.json e segredos removidos)." -ForegroundColor Cyan
 git -C $RepoDir status -s

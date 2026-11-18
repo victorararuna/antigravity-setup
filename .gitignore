@@ -1,4 +1,4 @@
-# Arquivos de estado local e credenciais do Antigravity
+﻿# Arquivos de estado local e credenciais do Antigravity
 config.json
 .migrated
 projects/
@@ -7,3 +7,7 @@ sidecars/
 **/auth.json
 .DS_Store
 Thumbs.db
+
+# Segredos do harness (chaves de API)
+.env
+.credentials.yaml
